@@ -1,6 +1,10 @@
 import './MainNav.scss'
 import { NavLink } from 'react-router-dom'
 import logo from './../../assets/argentBankLogo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
+
 export function MainNav(){
 
     return (
@@ -15,7 +19,7 @@ export function MainNav(){
         </NavLink>
         <div>
           <NavLink className="main-nav-item" to="./signIn">
-            <i class="fa fa-user-circle"></i>
+          <FontAwesomeIcon className='icon' icon={faUserCircle} />
             Sign In
           </NavLink>
         </div>
