@@ -6,10 +6,10 @@ import iconSecu from '../../../assets/icon-security.png'
 export function Features(){
 
     return(
-        <section class="features">
+        <section className="features">
         <h2 className="sr-only">Features</h2>
         <div className="feature-item">
-          <img src={iconChat} alt="Chat Icon" class="feature-icon" />
+          <img src={iconChat} alt="Chat Icon" className="feature-icon" />
           <h3 className="feature-item-title">You are our #1 priority</h3>
           <p>
             Need to talk to a representative? You can get in touch through our
@@ -20,7 +20,7 @@ export function Features(){
           <img
             src={iconMonney}
             alt="Chat Icon"
-            class="feature-icon"
+            className="feature-icon"
           />
           <h3 className="feature-item-title">More savings means higher rates</h3>
           <p>
@@ -31,7 +31,7 @@ export function Features(){
           <img
             src={iconSecu}
             alt="Chat Icon"
-            class="feature-icon"
+            className="feature-icon"
           />
           <h3 className="feature-item-title">Security you can trust</h3>
           <p>

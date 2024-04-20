@@ -1,26 +1,28 @@
 import './Form.scss'
+import { NavLink } from 'react-router-dom'
 
 export function Form(){
     return(
         <>
           <form>
-            <div class="input-wrapper">
-              <label for="username">Username</label
-              ><input type="text" id="username" />
+            <div className="input-wrapper">
+              <label htmlFor="username">Username
+              </label>
+              <input type="text" id="username" />
             </div>
-            <div class="input-wrapper">
-              <label for="password">Password</label
-              ><input type="password" id="password" />
+            <div className="input-wrapper">
+              <label htmlFor="password">Password
+              </label><input type="password" id="password" />
             </div>
-            <div class="input-remember">
-              <input type="checkbox" id="remember-me" /><label for="remember-me"
-                >Remember me</label
-              >
+            <div className="input-remember">
+              <input type="checkbox" id="remember-me" />
+              <label htmlFor="remember-me">Remember me
+              </label>
             </div>
             {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-            <a href="./user.html" class="sign-in-button">Sign In</a>
+            <NavLink to="/user" className="sign-in-button">Sign In</NavLink>
             {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-         <button class="sign-in-button">Sign In</button> 
+         <button className="sign-in-button">Sign In</button> 
 
           </form>
         </>

@@ -1,12 +1,13 @@
 .bg-dark{
     background-color: #12002b;
-    .sign-in-content{
-    box-sizing: border-box;
-    background-color: white;
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    padding: 2rem;
+    .sign-in-content {
+        box-sizing: border-box;
+        background-color: white;
+        width: 300px;
+        margin: 0 auto;
+        margin-top: 3rem;
+        padding: 2rem;
+    
     .fa {
         display: inline-block;
         font: normal normal normal 14px / 1 FontAwesome;
@@ -16,10 +17,4 @@
         -moz-osx-font-smoothing: grayscale;
     }
     }
-}
-.main {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0%;
-
 }
