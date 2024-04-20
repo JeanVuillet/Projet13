@@ -1,0 +1,25 @@
+.bg-dark{
+    background-color: #12002b;
+    .sign-in-content{
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+    padding: 2rem;
+    .fa {
+        display: inline-block;
+        font: normal normal normal 14px / 1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    }
+}
+.main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+
+}

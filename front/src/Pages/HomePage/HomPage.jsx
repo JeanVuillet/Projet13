@@ -6,12 +6,12 @@ import { Footer } from "../../Components/Footer/Footer";
 export function HomePage() {
     return(
   <>
-    <MainNav />
+  
     <div className="mainHomePage">
       <Hero />
       <Features />
     </div>
-    <Footer />
+
   </>
     )
   ;
