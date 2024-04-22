@@ -1,10 +1,14 @@
 import './Form.scss'
 import { NavLink } from 'react-router-dom'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export function Form(){
     return(
         <>
           <form>
+          <FontAwesomeIcon className='icon' icon={faUserCircle} />
+          <h1>Sign In</h1>
             <div className="input-wrapper">
               <label htmlFor="username">Username
               </label>
