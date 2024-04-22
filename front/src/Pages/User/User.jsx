@@ -9,7 +9,7 @@ export function User(){
             <br/>
             Tonny
         </h1>
-        <button class="edit-button">Edit Name</button>
+        <button className="edit-button">Edit Name</button>
     </div>
     <div className="accoutsSection">
         <h2 className='sr-only'>Accounts</h2>
