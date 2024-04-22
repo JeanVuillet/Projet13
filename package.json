@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "run-parallel": "^1.2.0"
+  }
+}
