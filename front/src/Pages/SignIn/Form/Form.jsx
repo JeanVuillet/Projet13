@@ -12,23 +12,32 @@ export function Form() {
     const dispatch=useDispatch();
   // Utilisez la fonction de mutation login directement depuis votre API Redux Toolkit
   const [login , {isLoading,error,isError}] = useLoginMutation();
+  const test=useLoginMutation();
+  console.log('test'+test)
 
   async function testApi(username, password) {
-    try {
+    
       const user = { 'email': username, 'password': password };
 
       // Utilisez la fonction de mutation pour déclencher la mutation avec les données de l'utilisateur
       const response = await login(user);
-
+      console.log('async resp')
+      // console.log(response)
+      if (response.data){
       if(response.data.message==='User successfully logged in')
       {       console.log('welcom '+username);
+             
       dispatch(firstSlice.actions.setUser(username));
       navigate('/user')
        }
+      }
+      else {
+        if(response.error.status===400){
+        navigate('/error?errorCode=400')}
+      else{
+        navigate('/error?errorCode=500')
+      }
 
-    } catch (error) {
-      console.error(error);
-      navigate('/error')
     }
   }
 
