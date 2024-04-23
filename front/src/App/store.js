@@ -2,6 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { createSlice } from "@reduxjs/toolkit";
 
+
+
+
+
+
 export const firstSlice=createSlice(
     {
         name:'myFirstSlice',
@@ -10,8 +15,8 @@ export const firstSlice=createSlice(
             props:{}
         },
         reducers:{
-            addOne:(currentState,action)=>{{
-               const user= {...currentState.user,firstname:'tony'}
+            setUser:(currentState,action)=>{{
+               const user= {...currentState.user,firstname:action.payload}
                return {...currentState,user:user}
             }
 
@@ -20,10 +25,11 @@ export const firstSlice=createSlice(
 
     }
 )
- const firstReducer=firstSlice.reducer;
-
+export const getUser = (state) => state && state.myFirstSlice.user.firstname;
 const store = configureStore({
-  firstReducer: firstReducer,
+  reducer:{
+    myFirstSlice:firstSlice.reducer,
+  }
   // Ajoutez ici d'autres options de configuration du store si nécessaire
 });
 
