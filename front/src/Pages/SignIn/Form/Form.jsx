@@ -1,18 +1,36 @@
+// Dans votre fichier Form.jsx
+
 import './Form.scss';
 import { NavLink } from 'react-router-dom';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { firstSlice } from '../../../App/store';
 import { useDispatch } from 'react-redux';
-
+import { useLoginMutation } from '../../../api'; // Importez la fonction de mutation depuis api.js
+import { api } from '../../../api';
 export function Form() {
-  const dispatch = useDispatch();
 
+  const [loginMutation] = api.endpoints.login.useMutation();
+  // Utilisez la fonction de mutation login directement depuis votre API Redux Toolkit
+
+
+  async function testApi(username, password) {
+    try {
+      const user = { 'email': username, 'password': password };
+
+      // Utilisez la fonction de mutation pour déclencher la mutation avec les données de l'utilisateur
+      const response = await loginMutation(user);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   function buttonClick() {
     const username = document.getElementById('username').value;
-    dispatch(firstSlice.actions.setUser(username)); // Dispatchez l'action setUser avec le nom d'utilisateur saisi
-
+    const password = document.getElementById('password').value;
+    testApi(username, password);
+    // Vous pouvez également utiliser dispatch pour mettre à jour l'état global si nécessaire
+    // dispatch(firstSlice.actions.setUser(username));
   }
 
   return (
