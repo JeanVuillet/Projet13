@@ -9,6 +9,7 @@ import { useLoginMutation } from '../../../api'; // Importez la fonction de muta
 import { api } from '../../../api';
 export function Form() {
 
+  const [login, { isLoading, isError, error }] = useLoginMutation();
   const [loginMutation] = api.endpoints.login.useMutation();
   // Utilisez la fonction de mutation login directement depuis votre API Redux Toolkit
 
@@ -18,7 +19,7 @@ export function Form() {
       const user = { 'email': username, 'password': password };
 
       // Utilisez la fonction de mutation pour déclencher la mutation avec les données de l'utilisateur
-      const response = await loginMutation(user);
+      const response = await login(user);
       console.log(response);
     } catch (error) {
       console.error(error);
