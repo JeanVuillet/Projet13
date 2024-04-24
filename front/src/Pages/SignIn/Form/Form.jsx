@@ -10,6 +10,8 @@ import { useGetUserMutation } from '../../../api';
 import { firstSlice } from '../../../App/store';
 import { jwtDecode } from 'jwt-decode';
 
+
+
 export function Form() {
     const navigate=useNavigate();
     const dispatch=useDispatch();
@@ -35,6 +37,7 @@ export function Form() {
   
              
       dispatch(firstSlice.actions.setUser(firstName));
+      dispatch(firstSlice.actions.login(true))
       navigate('/user')
        }
       }
