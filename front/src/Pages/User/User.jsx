@@ -10,7 +10,9 @@ export function User() {
   function editName() {
     setNameDiv(true);
   }
-
+function changeName(){
+    
+}
   return (
     <>
       <main className="main bg-dark">
@@ -37,15 +39,16 @@ export function User() {
         <div className="modale">
           <div className="title">Edit Name</div>
 
-          <div className="nomPrenom">
+          <div className="mainSection">
             <div className="prenomSection">
               <label htmlFor="prenom">prenom</label>
-              <input type="text" id="prenom" placeholder={user} />
+              <input type="text" id="prenom" placeholder={user.firstName+' '+user.lastName} />
             </div>
             <div className="nomSection">
               <label htmlFor="nom">nom</label>
               <input id="nom" type="text"></input>
             </div>
+            <button className="valider" onClick={changeName}>Valider</button>
           </div>
         </div>
         </div>
