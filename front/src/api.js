@@ -11,9 +11,19 @@ export const api = createApi({
                 method: 'POST',
                 body: user
             })
+        }),
+        getUser: builder.mutation({
+            query: (token) => ({
+                url: '/user/profile',
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}` // Remplacez "yourTokenHere" par votre token JWT
+                }
+            })
         })
     })
 });
 
-// Exportez la fonction de mutation directement pour pouvoir l'utiliser dans d'autres fichiers
-export const { useLoginMutation } = api;
+
+export const { useLoginMutation, useGetUserMutation} = api;
+

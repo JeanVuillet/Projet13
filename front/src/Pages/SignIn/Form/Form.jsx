@@ -6,28 +6,35 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../../../api'; // Importez la fonction de mutation depuis api.js
+import { useGetUserMutation } from '../../../api';
 import { firstSlice } from '../../../App/store';
+import { jwtDecode } from 'jwt-decode';
+
 export function Form() {
     const navigate=useNavigate();
     const dispatch=useDispatch();
   // Utilisez la fonction de mutation login directement depuis votre API Redux Toolkit
   const [login , {isLoading,error,isError}] = useLoginMutation();
-  const test=useLoginMutation();
-  console.log('test'+test)
+  const [getUser,{loading2,error2,isError2}] = useGetUserMutation();
 
-  async function testApi(username, password) {
-    
-      const user = { 'email': username, 'password': password };
+  async function testApi(userMail, password) {
+   
+      const user = { 'email': userMail, 'password': password };
 
       // Utilisez la fonction de mutation pour déclencher la mutation avec les données de l'utilisateur
       const response = await login(user);
-      console.log('async resp')
-      // console.log(response)
+  
+
       if (response.data){
       if(response.data.message==='User successfully logged in')
-      {       console.log('welcom '+username);
+      {      
+        const token=response.data.body.token;
+
+        const user=await getUser(token);
+       const firstName=user.data.body.firstName;
+  
              
-      dispatch(firstSlice.actions.setUser(username));
+      dispatch(firstSlice.actions.setUser(firstName));
       navigate('/user')
        }
       }
@@ -43,9 +50,9 @@ export function Form() {
 
   function buttonClick() {
     try{
-    const username = document.getElementById('username').value;
+    const userMail = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    testApi(username, password);
+    testApi(userMail, password);
 
 
     }
