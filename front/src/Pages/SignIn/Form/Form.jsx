@@ -37,10 +37,12 @@ export function Form() {
         const token=response.data.body.token;
 
         const user=await getUser(token);
-       const firstName=user.data.body.firstName;
+       const userData={firstName:user.data.body.firstName,
+                    lastName:user.data.body.lastName
+                  };
   
              
-      dispatch(firstSlice.actions.setUser(firstName));
+      dispatch(firstSlice.actions.setUser(userData));
       dispatch(firstSlice.actions.login(true))
       navigate('/user')
        }

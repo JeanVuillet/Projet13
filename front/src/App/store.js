@@ -16,7 +16,7 @@ export const firstSlice=createSlice(
         },
         reducers:{
             setUser:(currentState,action)=>{{
-               const user= {...currentState.user,firstname:action.payload}
+               const user= action.payload
                return {...currentState,user:user}
             }},
             login: (currentState,action)=>{
@@ -29,7 +29,7 @@ export const firstSlice=createSlice(
 
     }
 )
-export const getUser = (state) => state && state.myFirstSlice.user.firstname;
+export const getUser = (state) => state && state.myFirstSlice.user;
 export const getLogin=(state)=>state && state.myFirstSlice.props.login
 
 const store = configureStore({

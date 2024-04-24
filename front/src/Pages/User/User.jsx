@@ -18,7 +18,7 @@ export function User() {
           <h1>
             Welcome back
             <br />
-            {user}
+            {user.firstName+' '+user.lastName}
           </h1>
           <button className="edit-button" onClick={editName}>
             Edit Name
