@@ -1,1 +1,16 @@
-impossible d utliser la fonction  useLoginMutation de api.js dans form.jsx
+securiser la route user
+mettre 3 boites blanches dans user
+revoir le responsive 
+https://cynoteck.com/fr/blog-post/how-to-implement-authentication-in-react-typescript/
+
+changer le nom de page User a profile
+refaire la modale selon gitHub issues
+
+
+methode route parametre id reponse
+regarder les donnes du back et la page de ref swager
+
+get api pour avoir les differents opersation
+get api pour avoir le detail d une opersation
+put api pour modifier les cathegories et les notes( l objet de modifications est renvoye modifie au back qui fait les modifs dans la bdd)
+ne pas oublier les codes d erreur les codes de validation renvoie qulquechose ou pas comment faire un menu deroulant avec swager
