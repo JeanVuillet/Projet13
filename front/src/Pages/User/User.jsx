@@ -1,15 +1,22 @@
 import "./User.scss";
 import { AccountComp } from "../../Components/AcccountComp/AccountComp";
 import { useSelector } from "react-redux";
-import { getUser } from "../../App/store";
+import {  getUser } from "../../App/store";
 import { useState } from "react";
-import { useChangeNameMutation } from "../../api";
+import { useChangeNameMutation, } from "../../api";
+import { useGetUserMutation } from "../../api";
+import { firstSlice } from "../../App/store";
+import { useDispatch } from "react-redux";
  
 export function User() {
+  const dispatch=useDispatch()
   const user = useSelector(getUser);
   const [nameDiv, setNameDiv] = useState(false);
   const changeNameMutation = useChangeNameMutation();
   const [changeName] = changeNameMutation;
+  const getNameMutation=useGetUserMutation();
+  const[getName]=getNameMutation;
+
 
   function editName() {
     setNameDiv(true);
@@ -19,6 +26,9 @@ async function nameChanger(){
    let userLastName=document.getElementById('nom');
 const response = await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
 console.log(response)
+
+const newName=await getName(user.token);
+dispatch(firstSlice.actions.setUser({firstName:newName.data.body.firstName,lastName:newName.data.body.lastName,token:user.token}))
 setNameDiv(false);
 
 console.log('userIs');

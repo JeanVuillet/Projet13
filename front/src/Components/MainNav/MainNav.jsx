@@ -33,7 +33,7 @@ dispatch(firstSlice.actions.login(false))
         <div>
           <NavLink className="main-nav-item" >
           <FontAwesomeIcon className='icon' icon={faUserCircle} />
-            {login? <span className='userFirstName'>{user.firstName}</span>:<></>}
+            {login && user? <span className='userFirstName'>{user.firstName}</span>:<></>}
           </NavLink>
           <NavLink className="main-nav-item" onClick={changeLogin} to={login? './':'./signIn'}>
         { login?<> <FontAwesomeIcon icon={faRightFromBracket} /> signOut</>:<>sign in</>}
