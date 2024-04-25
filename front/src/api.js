@@ -13,17 +13,34 @@ export const api = createApi({
             })
         }),
         getUser: builder.mutation({
-            query: (token) => ({
+            query: (token) => { 
+        
+                return({
                 url: '/user/profile',
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${token}` // Remplacez "yourTokenHere" par votre token JWT
                 }
-            })
+            })}
+        }),
+        changeName: builder.mutation({
+            query: (object) => {
+            
+                return ({
+                url: '/user/profile',
+                method: 'PUT',
+                headers: {
+                    Authorization: `Bearer ${object.token}`
+                },
+                body: {
+                    firstName: object.firstName,
+                    lastName: object.lastName
+                }
+            })}
         })
     })
 });
 
 
-export const { useLoginMutation, useGetUserMutation} = api;
+export const { useLoginMutation, useGetUserMutation, useChangeNameMutation} = api;
 

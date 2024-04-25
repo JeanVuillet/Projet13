@@ -38,7 +38,8 @@ export function Form() {
 
         const user=await getUser(token);
        const userData={firstName:user.data.body.firstName,
-                    lastName:user.data.body.lastName
+                    lastName:user.data.body.lastName,
+                    token:token
                   };
   
              

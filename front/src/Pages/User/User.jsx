@@ -3,15 +3,26 @@ import { AccountComp } from "../../Components/AcccountComp/AccountComp";
 import { useSelector } from "react-redux";
 import { getUser } from "../../App/store";
 import { useState } from "react";
+import { useChangeNameMutation } from "../../api";
+ 
 export function User() {
   const user = useSelector(getUser);
   const [nameDiv, setNameDiv] = useState(false);
+  const changeNameMutation = useChangeNameMutation();
+  const [changeName] = changeNameMutation;
 
   function editName() {
     setNameDiv(true);
   }
-function changeName(){
-    
+async function nameChanger(){
+   let userFirstName=document.getElementById('prenom');
+   let userLastName=document.getElementById('nom');
+const response = await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
+console.log(response)
+setNameDiv(false);
+
+console.log('userIs');
+console.log(user)
 }
   return (
     <>
@@ -34,7 +45,7 @@ function changeName(){
         </div>
         <div
           className="nameSelector"
-          style={nameDiv ? { diplay: "flex" } : { display: "none" }}
+          style={nameDiv ? { display: "flex" } : { display: "none" }}
         >
         <div className="modale">
           <div className="title">Edit Name</div>
@@ -48,7 +59,7 @@ function changeName(){
               <label htmlFor="nom">nom</label>
               <input id="nom" type="text"></input>
             </div>
-            <button className="valider" onClick={changeName}>Valider</button>
+            <button className="valider" onClick={nameChanger}>Valider</button>
           </div>
         </div>
         </div>
