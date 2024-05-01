@@ -3,7 +3,7 @@ import './App.scss';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import { HomePage } from '../Pages/HomePage/HomPage';
 import { SignIn } from '../Pages/SignIn/SingIn';
-import { User } from '../Pages/User/User';
+import { User } from '../Pages/Profile/Profile';
 import { Error } from '../Pages/Error/Error';
 import { MainNav } from '../Components/MainNav/MainNav';
 import { Footer } from '../Components/Footer/Footer';

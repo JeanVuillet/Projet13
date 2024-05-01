@@ -1,4 +1,4 @@
-import "./User.scss";
+import "./Profile.scss";
 import { AccountComp } from "../../Components/AcccountComp/AccountComp";
 import { useSelector } from "react-redux";
 import {  getUser } from "../../App/store";
