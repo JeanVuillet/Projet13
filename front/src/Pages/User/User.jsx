@@ -7,6 +7,7 @@ import { useChangeNameMutation, } from "../../api";
 import { useGetUserMutation } from "../../api";
 import { firstSlice } from "../../App/store";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
  
 export function User() {
   const dispatch=useDispatch()
@@ -34,18 +35,33 @@ setNameDiv(false);
 console.log('userIs');
 console.log(user)
 }
+
   return (
     <>
-      <main className="main bg-dark">
+      <main className="main bg-dark"style={nameDiv?{backgroundColor:'#dfe7ec'}: {}}>
         <div className="header">
-          <h1>
+          {nameDiv ? (<>
+          <h1 className="welcomModal">    Welcome back</h1>
+          <div className="inputs">
+          <input id='prenom' placeholder={user.firstName}>
+            </input>
+            <input id='nom' placeholder={user.lastName}>
+            </input>
+          </div>
+          <div className="buttons">
+            <button onClick={nameChanger}>Save</button>
+            <button onClick={()=>{setNameDiv(false)}}>Cancel</button>
+          </div>
+          </>) :
+          (<><h1>
             Welcome back
             <br />
             {user.firstName+' '+user.lastName}
           </h1>
           <button className="edit-button" onClick={editName}>
             Edit Name
-          </button>
+          </button></>)}
+
         </div>
         <div className="accoutsSection">
           <h2 className="sr-only">Accounts</h2>
@@ -53,27 +69,9 @@ console.log(user)
             <AccountComp />
           </div>
         </div>
-        <div
-          className="nameSelector"
-          style={nameDiv ? { display: "flex" } : { display: "none" }}
-        >
-        <div className="modale">
-          <div className="title">Edit Name</div>
 
-          <div className="mainSection">
-            <div className="prenomSection">
-              <label htmlFor="prenom">prenom</label>
-              <input type="text" id="prenom" placeholder={user.firstName+' '+user.lastName} />
-            </div>
-            <div className="nomSection">
-              <label htmlFor="nom">nom</label>
-              <input id="nom" type="text"></input>
-            </div>
-            <button className="valider" onClick={nameChanger}>Valider</button>
-          </div>
-        </div>
-        </div>
       </main>
     </>
   );
+
 }
