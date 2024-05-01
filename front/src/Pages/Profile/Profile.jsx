@@ -22,7 +22,8 @@ export function User() {
   function editName() {
     setNameDiv(true);
   }
-async function nameChanger(){
+async function nameChanger(event){
+  event.preventDefault();
    let userFirstName=document.getElementById('prenom');
    let userLastName=document.getElementById('nom');
 const response = await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
@@ -42,16 +43,18 @@ console.log(user)
         <div className="header">
           {nameDiv ? (<>
           <h1 className="welcomModal">    Welcome back</h1>
+         <form onSubmit={(event)=>nameChanger(event)}>
           <div className="inputs">
-          <input id='prenom' placeholder={user.firstName}>
+          <input id='prenom' placeholder={user.firstName} required>
             </input>
-            <input id='nom' placeholder={user.lastName}>
+            <input id='nom' placeholder={user.lastName} required>
             </input>
           </div>
           <div className="buttons">
-            <button onClick={nameChanger}>Save</button>
+            <button type="submit" >Save</button>
             <button onClick={()=>{setNameDiv(false)}}>Cancel</button>
           </div>
+        </form >
           </>) :
           (<><h1>
             Welcome back
