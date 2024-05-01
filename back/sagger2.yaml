@@ -1,0 +1,137 @@
+swagger: '2.0'
+info:
+  title: Bank Argent API documentation
+  description: Contains all future endpoints of the project
+  version: '1.0.0'
+  termsOfService: 'http://swagger.io/terms/'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /user/getTransactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get User Transactions
+      description: Retrieve all transactions for the authenticated user
+      parameters:
+        - in: query
+          name: accountId
+          description: ID of the account for which transactions are requested
+          required: true
+          type: string
+        - in: query
+          name: startDate
+          description: Start date of the transaction period
+          required: false
+          type: string
+          format: date
+        - in: query
+          name: endDate
+          description: End date of the transaction period
+          required: false
+          type: string
+          format: date
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful response containing user transactions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '400':
+          description: Bad request. Invalid parameters provided.
+        '500':
+          description: Internal Server Error
+  /transaction/{transactionId}:
+    post:
+      tags:
+        - Transactions
+      summary: Get Transaction Details
+      description: Retrieve details of a transaction by its ID using a token
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction for which details are requested
+          required: true
+          type: integer
+          format: int64
+      requestBody:
+        description: Token representing the transaction ID
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful response containing transaction details
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Bad request. Invalid transaction token provided.
+        '404':
+          description: Transaction not found.
+        '500':
+          description: Internal Server Error
+  /transaction/{transactionId}/update:
+    post:
+      tags:
+        - Transactions
+      summary: Update Transaction
+      description: Update the content of a transaction using its token
+      parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to be updated
+          required: true
+          type: integer
+          format: int64
+      requestBody:
+        description: Token representing the transaction ID along with updated content
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                updatedContent:
+                  type: object  # Replace this with the actual structure of the updated content
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful response indicating that the transaction has been updated
+          schema:
+            type: object  # Define the structure of the response if needed
+        '400':
+          description: Bad request. Invalid transaction token or content provided.
+        '404':
+          description: Transaction not found.
+        '500':
+          description: Internal Server Error
+definitions:
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      amount:
+        type: number
+        format: float
+      description:
+        type: string
+      date:
+        type: string
+        format: date-time

@@ -63,13 +63,10 @@
     font-size: large;
 
 }
-.mainSection{
-    display: flex;
-    flex-direction: column;
-    gap:5px;
-    justify-content: center;
-    gap: 20px;
+.main{
+    flex:1;
 }
+
 .prenomSection{
     display: flex;
     justify-content: flex-end;

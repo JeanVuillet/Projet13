@@ -66,7 +66,9 @@ console.log(user)
         <div className="accoutsSection">
           <h2 className="sr-only">Accounts</h2>
           <div className="accounts">
-            <AccountComp />
+            <AccountComp header='Argent Bank Checking (x8349)' amount='$2,082.79' footer='Available Balance'/>
+            <AccountComp header='Argent Bank Savings (x6712)' amount='$10,928.42' footer='Available Balance'/>
+            <AccountComp header='Argent Bank Credit Card (x8349)' amount='$184.30' footer='Current Balance'/>
           </div>
         </div>
 
