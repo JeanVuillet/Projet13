@@ -18,6 +18,8 @@ export function MainNav({status}){
 function changeLogin(){
   if (login){
 dispatch(firstSlice.actions.login(false))
+dispatch(firstSlice.actions.setUser({firstName:'',lastName:'',token:''}))
+localStorage.removeItem('token');
   }
 }
     return (

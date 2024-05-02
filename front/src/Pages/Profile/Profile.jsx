@@ -8,6 +8,7 @@ import { useGetUserMutation } from "../../api";
 import { firstSlice } from "../../App/store";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
  
 export function User() {
   const dispatch=useDispatch()
@@ -17,6 +18,14 @@ export function User() {
   const [changeName] = changeNameMutation;
   const getNameMutation=useGetUserMutation();
   const[getName]=getNameMutation;
+ const navigate=useNavigate();
+  useEffect(()=>{
+    const token=localStorage.getItem('token');
+
+    if(!token){
+  navigate('/signIn');
+    }
+  },[]);
 
 
   function editName() {
@@ -36,6 +45,7 @@ setNameDiv(false);
 console.log('userIs');
 console.log(user)
 }
+
 
   return (
     <>

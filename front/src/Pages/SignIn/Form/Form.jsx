@@ -45,6 +45,7 @@ export function Form() {
              
       dispatch(firstSlice.actions.setUser(userData));
       dispatch(firstSlice.actions.login(true))
+      localStorage.setItem('token', token); // Stockage du JWT dans le stockage local
       navigate('/user')
        }
       }
