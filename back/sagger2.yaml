@@ -9,30 +9,25 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/getTransactions:
+  /user/{accountId}/getTransactions:
     get:
+      security:
+        - Bearer: []
       tags:
         - Transactions
       summary: Get User Transactions
       description: Retrieve all transactions for the authenticated user
       parameters:
-        - in: query
+        - in: path
           name: accountId
           description: ID of the account for which transactions are requested
           required: true
           type: string
-        - in: query
-          name: startDate
-          description: Start date of the transaction period
-          required: false
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
           type: string
-          format: date
-        - in: query
-          name: endDate
-          description: End date of the transaction period
-          required: false
-          type: string
-          format: date
       produces:
         - application/json
       responses:
@@ -47,7 +42,9 @@ paths:
         '500':
           description: Internal Server Error
   /transaction/{transactionId}:
-    post:
+    get:
+      security:
+        - Bearer: []
       tags:
         - Transactions
       summary: Get Transaction Details
@@ -59,23 +56,19 @@ paths:
           required: true
           type: integer
           format: int64
-      requestBody:
-        description: Token representing the transaction ID
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
       produces:
         - application/json
       responses:
         '200':
           description: Successful response containing transaction details
           schema:
-            $ref: '#/definitions/Transaction'
+            type: object
+            $ref: '#/definitions/TransactionDetails'
         '400':
           description: Bad request. Invalid transaction token provided.
         '404':
@@ -83,30 +76,35 @@ paths:
         '500':
           description: Internal Server Error
   /transaction/{transactionId}/update:
-    post:
+    put:
+      security:
+        - Bearer: []
       tags:
         - Transactions
       summary: Update Transaction
       description: Update the content of a transaction using its token
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Update transaction details
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionDetails'
         - in: path
           name: transactionId
           description: ID of the transaction to be updated
           required: true
           type: integer
           format: int64
-      requestBody:
-        description: Token representing the transaction ID along with updated content
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
-                updatedContent:
-                  type: object  # Replace this with the actual structure of the updated content
+
+
+              
+         
       produces:
         - application/json
       responses:
@@ -120,6 +118,11 @@ paths:
           description: Transaction not found.
         '500':
           description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 definitions:
   Transaction:
     type: object
@@ -127,7 +130,10 @@ definitions:
       id:
         type: integer
         format: int64
-      amount:
+      amount: 
+        type: number
+        format: float
+      balance: 
         type: number
         format: float
       description:
@@ -135,3 +141,10 @@ definitions:
       date:
         type: string
         format: date-time
+  TransactionDetails: 
+    type: object
+    properties:            
+      category:
+        type: string
+      notes:
+        type: string

@@ -14,3 +14,7 @@ get api pour avoir les differents opersation
 get api pour avoir le detail d une opersation
 put api pour modifier les cathegories et les notes( l objet de modifications est renvoye modifie au back qui fait les modifs dans la bdd)
 ne pas oublier les codes d erreur les codes de validation renvoie qulquechose ou pas comment faire un menu deroulant avec swager
+
+pj 14
+Cra
+faire une comparaison des perfs avant apres
