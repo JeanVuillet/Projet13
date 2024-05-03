@@ -24,7 +24,7 @@ localStorage.removeItem('token');
 }
     return (
         <nav className="main-nav">
-        <NavLink className="main-nav-logo" to="/signIn">
+        <NavLink className="main-nav-logo">
           <img
             className="main-nav-logo-image"
             src={logo}
@@ -33,12 +33,17 @@ localStorage.removeItem('token');
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          <NavLink className="main-nav-item"  onClick={changeLogin} to={login? './':'./signIn'}>
-            <FontAwesomeIcon className='icon' icon={faUserCircle} />
+          { login? 
+            <>
+          <NavLink className="main-nav-item" >
+          <FontAwesomeIcon className='icon' icon={faUserCircle} />
             {login && user? <span className='userFirstName'>{user.firstName}</span>:<></>}
-            { login?<> <FontAwesomeIcon icon={faRightFromBracket} /> SignOut</>:<>Sign In</>}
           </NavLink>
-         
+          <NavLink className="main-nav-item" onClick={changeLogin} to={login? './':'./signIn'}>
+         <FontAwesomeIcon icon={faRightFromBracket} /> Sign Out
+          </NavLink></>
+          :
+          <NavLink className="main-nav-item"  to="/signIn">     <FontAwesomeIcon className='icon' icon={faUserCircle} /> Sign In</NavLink>}
         </div>
       </nav>
     )
