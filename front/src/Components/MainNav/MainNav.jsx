@@ -33,13 +33,12 @@ localStorage.removeItem('token');
           <h1 className="sr-only">Argent Bank</h1>
         </NavLink>
         <div>
-          <NavLink className="main-nav-item" >
-          <FontAwesomeIcon className='icon' icon={faUserCircle} />
+          <NavLink className="main-nav-item"  onClick={changeLogin} to={login? './':'./signIn'}>
+            <FontAwesomeIcon className='icon' icon={faUserCircle} />
             {login && user? <span className='userFirstName'>{user.firstName}</span>:<></>}
+            { login?<> <FontAwesomeIcon icon={faRightFromBracket} /> SignOut</>:<>Sign In</>}
           </NavLink>
-          <NavLink className="main-nav-item" onClick={changeLogin} to={login? './':'./signIn'}>
-        { login?<> <FontAwesomeIcon icon={faRightFromBracket} /> signOut</>:<>sign in</>}
-          </NavLink>
+         
         </div>
       </nav>
     )
