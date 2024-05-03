@@ -37,13 +37,13 @@ localStorage.removeItem('token');
             <>
           <NavLink className="main-nav-item" >
           <FontAwesomeIcon className='icon' icon={faUserCircle} />
-            {login && user? <span className='userFirstName'>{user.firstName}</span>:<></>}
+            {login && user? <span className='userFirstName'> {user.firstName} </span>:<></>}
           </NavLink>
           <NavLink className="main-nav-item" onClick={changeLogin} to={login? './':'./signIn'}>
          <FontAwesomeIcon icon={faRightFromBracket} /> Sign Out
           </NavLink></>
           :
-          <NavLink className="main-nav-item"  to="/signIn">     <FontAwesomeIcon className='icon' icon={faUserCircle} /> Sign In</NavLink>}
+          <NavLink className="main-nav-item"  to="/signIn">     <FontAwesomeIcon className='icon' icon={faUserCircle} /> Sign In </NavLink>}
         </div>
       </nav>
     )
