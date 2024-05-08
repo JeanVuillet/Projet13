@@ -5,19 +5,15 @@ import {  getUser } from "../../App/store";
 import { useState } from "react";
 import { useChangeNameMutation, } from "../../api";
 import { useGetUserMutation } from "../../api";
-import { firstSlice } from "../../App/store";
+
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChangeName } from "./ChangeName/ChangeName.jsx"
  
 export function User() {
-  const dispatch=useDispatch()
   const user = useSelector(getUser);
   const [nameDiv, setNameDiv] = useState(false);
-  const changeNameMutation = useChangeNameMutation();
-  const [changeName] = changeNameMutation;
-  const getNameMutation=useGetUserMutation();
-  const[getName]=getNameMutation;
  const navigate=useNavigate();
   useEffect(()=>{
     const token=localStorage.getItem('token');
@@ -31,41 +27,15 @@ export function User() {
   function editName() {
     setNameDiv(true);
   }
-async function nameChanger(event){
-  event.preventDefault();
-   let userFirstName=document.getElementById('prenom');
-   let userLastName=document.getElementById('nom');
-const response = await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
-console.log(response)
 
-const newName=await getName(user.token);
-dispatch(firstSlice.actions.setUser({firstName:newName.data.body.firstName,lastName:newName.data.body.lastName,token:user.token}))
-setNameDiv(false);
-
-console.log('userIs');
-console.log(user)
-}
 
 
   return (
     <>
       <main className="main bg-dark"style={nameDiv?{backgroundColor:'#dfe7ec'}: {}}>
         <div className="header">
-          {nameDiv ? (<>
-          <h1 className="welcomModal">    Welcome back</h1>
-         <form onSubmit={(event)=>nameChanger(event)}>
-          <div className="inputs">
-          <input id='prenom' placeholder={user.firstName} required>
-            </input>
-            <input id='nom' placeholder={user.lastName} required>
-            </input>
-          </div>
-          <div className="buttons">
-            <button type="submit" >Save</button>
-            <button onClick={()=>{setNameDiv(false)}}>Cancel</button>
-          </div>
-        </form >
-          </>) :
+          {nameDiv ? <ChangeName setNameDiv={setNameDiv}/> 
+          :
           (<><h1>
             Welcome back
             <br />
@@ -73,7 +43,9 @@ console.log(user)
           </h1>
           <button className="edit-button" onClick={editName}>
             Edit Name
-          </button></>)}
+          </button></>
+        )
+        }
 
         </div>
         <div className="accoutsSection">
