@@ -50,9 +50,11 @@ export function Form() {
       navigate('/user')
        }
       }
+      //si reponse negative
       else {
         if(response.error.status===400){
         setErrorMessage('wrong password or Id')}
+        //si erreur de connexion
       else{
         navigate('/error?errorCode=500')
       }
@@ -72,8 +74,7 @@ export function Form() {
       throw new Error('error')
     }
 
-    // Vous pouvez également utiliser dispatch pour mettre à jour l'état global si nécessaire
-    // dispatch(firstSlice.actions.setUser(username));
+
   }
  function supressError(){
   setErrorMessage(null);
