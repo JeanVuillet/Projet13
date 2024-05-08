@@ -21,27 +21,29 @@ export function Form() {
   const [errorMessage,setErrorMessage]=useState(null)
   let response=null;
 
-  async function testApi(userMail, password) {
+  async function storeUser(userMail, password) {
    
       const user = { 'email': userMail, 'password': password };
 
-      // Utilisez la fonction de mutation pour déclencher la mutation avec les données de l'utilisateur
+      // envoie de l utilisateur pour tenter le login dans la bdd
         response = await login(user);
   
 
       if (response.data){
+        //si reponse positive
       if(response.data.message==='User successfully logged in')
       {      
+        //recuperation du token dans la reponse
         setErrorMessage(null);
         const token=response.data.body.token;
-
+        // recuperation de l utilisateur dans la bdd via le token
         const user=await getUser(token);
        const userData={firstName:user.data.body.firstName,
                     lastName:user.data.body.lastName,
                     token:token
                   };
   
-             
+        // stockage de l utilisateur dans le store
       dispatch(firstSlice.actions.setUser(userData));
       dispatch(firstSlice.actions.login(true))
       localStorage.setItem('token', token); // Stockage du JWT dans le stockage local
@@ -62,7 +64,7 @@ export function Form() {
     try{
     const userMail = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    testApi(userMail, password);
+    storeUser(userMail, password);
 
 
     }
