@@ -9,7 +9,7 @@ import { Modale } from "./ChangeName/ChangeName.jsx"
  
 export function User() {
   const user = useSelector(getUser);
-  const [nameDiv, setNameDiv] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
  const navigate=useNavigate();
   useEffect(()=>{
     const token=localStorage.getItem('token');
@@ -21,16 +21,16 @@ export function User() {
 
 
   function editName() {
-    setNameDiv(true);
+    setModalOpen(true);
   }
 
 
 
   return (
     <>
-      <main className="main bg-dark"style={nameDiv?{backgroundColor:'#dfe7ec'}: {}}>
+      <main className="main bg-dark"style={modalOpen?{backgroundColor:'#dfe7ec'}: {}}>
         <div className="header">
-          {nameDiv ? <Modale setNameDiv={setNameDiv}/> 
+          {modalOpen ? <Modale setModalOpen={setModalOpen}/> 
           :
           (<><h1>
             Welcome back

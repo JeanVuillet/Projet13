@@ -6,7 +6,7 @@ import { useChangeNameMutation, } from "../../../api";
 import { useGetUserMutation } from "../../../api";
 import './ChangeName.scss';
 
-export function Modale({setNameDiv}){
+export function Modale({setModalOpen}){
     const changeNameMutation = useChangeNameMutation();
     const [changeName] = changeNameMutation;
     const getNameMutation=useGetUserMutation();
@@ -27,7 +27,7 @@ export function Modale({setNameDiv}){
       const newName=await getName(user.token);
       //mise a jour du nom dans le store
       dispatch(firstSlice.actions.setUser({firstName:newName.data.body.firstName,lastName:newName.data.body.lastName,token:user.token}))
-      setNameDiv(false);
+      setModalOpen(false);
       
       }
 
@@ -44,7 +44,7 @@ export function Modale({setNameDiv}){
           </div>
           <div className="buttons">
             <button type="submit" >Save</button>
-            <button onClick={()=>{setNameDiv(false)}}>Cancel</button>
+            <button onClick={()=>{setModalOpen(false)}}>Cancel</button>
           </div>
          </form >
           </>
