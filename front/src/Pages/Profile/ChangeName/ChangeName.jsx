@@ -6,7 +6,7 @@ import { useChangeNameMutation, } from "../../../api";
 import { useGetUserMutation } from "../../../api";
 import './ChangeName.scss';
 
-export function ChangeName({setNameDiv}){
+export function Modale({setNameDiv}){
     const changeNameMutation = useChangeNameMutation();
     const [changeName] = changeNameMutation;
     const getNameMutation=useGetUserMutation();
@@ -19,15 +19,13 @@ export function ChangeName({setNameDiv}){
         event.preventDefault();
          let userFirstName=document.getElementById('prenom');
          let userLastName=document.getElementById('nom');
-      const response = await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
-      console.log(response)
+     changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
+     
       
       const newName=await getName(user.token);
       dispatch(firstSlice.actions.setUser({firstName:newName.data.body.firstName,lastName:newName.data.body.lastName,token:user.token}))
       setNameDiv(false);
       
-      console.log('userIs');
-      console.log(user)
       }
 
     return(

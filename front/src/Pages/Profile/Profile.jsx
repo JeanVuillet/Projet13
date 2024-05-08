@@ -3,13 +3,9 @@ import { AccountComp } from "../../Components/AcccountComp/AccountComp";
 import { useSelector } from "react-redux";
 import {  getUser } from "../../App/store";
 import { useState } from "react";
-import { useChangeNameMutation, } from "../../api";
-import { useGetUserMutation } from "../../api";
-
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChangeName } from "./ChangeName/ChangeName.jsx"
+import { Modale } from "./ChangeName/ChangeName.jsx"
  
 export function User() {
   const user = useSelector(getUser);
@@ -34,7 +30,7 @@ export function User() {
     <>
       <main className="main bg-dark"style={nameDiv?{backgroundColor:'#dfe7ec'}: {}}>
         <div className="header">
-          {nameDiv ? <ChangeName setNameDiv={setNameDiv}/> 
+          {nameDiv ? <Modale setNameDiv={setNameDiv}/> 
           :
           (<><h1>
             Welcome back
