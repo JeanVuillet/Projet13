@@ -67,7 +67,6 @@ paths:
         '200':
           description: Successful response containing transaction details
           schema:
-            type: object
             $ref: '#/definitions/TransactionDetails'
         '400':
           description: Bad request. Invalid transaction token provided.
@@ -84,6 +83,12 @@ paths:
       summary: Update Transaction
       description: Update the content of a transaction using its token
       parameters:
+        - in: path
+          name: transactionId
+          description: ID of the transaction to update
+          required: true
+          type: integer
+          format: int64
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
@@ -94,8 +99,7 @@ paths:
           description: Update transaction details
           required: true
           schema:
-            $ref: '#/definitions/TransactionDetails'
-
+            $ref: '#/definitions/TransactionDetailsUpdate'
       produces:
         - application/json
       responses:
@@ -123,10 +127,8 @@ definitions:
         format: int64
       amount: 
         type: number
-        format: float
       balance: 
         type: number
-        format: float
       description:
         type: string
       date:
@@ -134,8 +136,18 @@ definitions:
         format: date-time
   TransactionDetails: 
     type: object
-    properties:            
+    properties: 
+      transactionType:
+        type: string           
       category:
         type: string
       notes:
         type: string
+  TransactionDetailsUpdate: 
+    type: object
+    properties:           
+      category:
+        type: string
+      notes:
+        type: string
+

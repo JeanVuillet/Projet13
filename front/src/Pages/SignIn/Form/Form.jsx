@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../../../api'; // Importez la fonction de mutation depuis api.js
 import { useGetUserMutation } from '../../../api';
 import { firstSlice } from '../../../App/store';
-import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 
 
