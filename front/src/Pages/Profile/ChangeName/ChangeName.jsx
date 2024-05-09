@@ -21,8 +21,8 @@ export function Modale({setModalOpen}){
         // recupereation et changement dans la bdd
          let userFirstName=document.getElementById('prenom');
          let userLastName=document.getElementById('nom');
-     changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
-     
+    const nameChanged= await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
+   
       // recuperation du nom  change depuis la bdd
       const newName=await getName(user.token);
       //mise a jour du nom dans le store
