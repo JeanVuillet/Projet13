@@ -4,6 +4,7 @@ import { firstSlice } from "../../../App/store";
 import { useDispatch } from "react-redux";
 import { useChangeNameMutation, } from "../../../api";
 import { useGetUserMutation } from "../../../api";
+import { useRef } from "react";
 import './ChangeName.scss';
 
 export function Modale({setModalOpen}){
@@ -11,7 +12,8 @@ export function Modale({setModalOpen}){
     const [changeName] = changeNameMutation;
     const getNameMutation=useGetUserMutation();
     const[getName]=getNameMutation;
-  
+  const prenomRef=useRef(null);
+  const nomRef=useRef(null);
     const user = useSelector(getUser);
     const dispatch=useDispatch();
 
@@ -19,9 +21,9 @@ export function Modale({setModalOpen}){
     async function nameChanger(event){
         event.preventDefault();
         // recupereation et changement dans la bdd
-         let userFirstName=document.getElementById('prenom');
-         let userLastName=document.getElementById('nom');
-    const nameChanged= await changeName({token:user.token, firstName:userFirstName.value,lastName:userLastName.value});
+         let userFirstName=prenomRef.current.value;
+         let userLastName=nomRef.current.value;
+    await changeName({token:user.token, firstName:userFirstName,lastName:userLastName});
    
       // recuperation du nom  change depuis la bdd
       const newName=await getName(user.token);
@@ -37,9 +39,9 @@ export function Modale({setModalOpen}){
           <h1 className="welcomModal">    Welcome back</h1>
          <form onSubmit={(event)=>nameChanger(event)}>
           <div className="inputs">
-          <input id='prenom' placeholder={user.firstName} required>
+          <input id='prenom' placeholder={user.firstName} ref={prenomRef}required>
             </input>
-            <input id='nom' placeholder={user.lastName} required>
+            <input id='nom' placeholder={user.lastName} ref={nomRef}required>
             </input>
           </div>
           <div className="buttons">
