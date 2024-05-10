@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import {faRightFromBracket} from'@fortawesome/free-solid-svg-icons'
 import { getLogin } from '../../App/store.js'
-import { getUser } from '../../App/store.js'
+import { storeGetUser } from '../../App/store.js'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { firstSlice } from '../../App/store.js'
@@ -13,7 +13,7 @@ export function MainNav({status}){
 
   const dispatch=useDispatch();
      const login=useSelector(getLogin);
-    const user =useSelector(getUser);
+    const user =useSelector(storeGetUser);
 
 function changeLogin(){
   if (login){

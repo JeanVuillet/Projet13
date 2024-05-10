@@ -29,7 +29,7 @@ export const firstSlice=createSlice(
 
     }
 )
-export const getUser = (state) => state && state.myFirstSlice.user;
+export const storeGetUser = (state) => state && state.myFirstSlice.user;
 export const getLogin=(state)=>state && state.myFirstSlice.props.login
 
 const store = configureStore({

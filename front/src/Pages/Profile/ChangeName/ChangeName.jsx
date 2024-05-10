@@ -1,4 +1,4 @@
-import {  getUser } from "../../../App/store";
+import {  storeGetUser } from "../../../App/store";
 import { useSelector } from "react-redux";
 import { firstSlice } from "../../../App/store";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ export function Modale({setModalOpen}){
     const[getName]=getNameMutation;
   const prenomRef=useRef(null);
   const nomRef=useRef(null);
-    const user = useSelector(getUser);
+    const user = useSelector(storeGetUser);
     const dispatch=useDispatch();
 
     // changement du nom dans la bdd verification et changement nom store
