@@ -9,12 +9,15 @@ import { useLoginMutation } from '../../../api'; // Importez la fonction de muta
 import { useGetUserMutation } from '../../../api';
 import { firstSlice } from '../../../App/store';
 import { useState } from 'react';
+import { useRef } from 'react';
 
 
 
 export function Form() {
     const navigate=useNavigate();
     const dispatch=useDispatch();
+    let email=useRef(null);
+    let password=useRef(null); 
   // Utilisez la fonction de mutation login directement depuis votre API Redux Toolkit
   const [login , {isLoading,error,isError}] = useLoginMutation();
   const [getUser,{loading2,error2,isError2}] = useGetUserMutation();
@@ -64,9 +67,9 @@ export function Form() {
 
   function buttonClick() {
     try{
-    const userMail = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    storeUser(userMail, password);
+    const userMail = email.current.value;
+    const userPassword = password.current.value;
+    storeUser(userMail, userPassword);
 
 
     }
@@ -87,11 +90,11 @@ export function Form() {
        
         <div className="input-wrapper">
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" onChange={supressError}/>
+          <input type="text" id="username" onChange={supressError} ref={email}/>
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" onChange={supressError}/>
+          <input type="password" id="password" onChange={supressError} ref={password}/>
         </div>
         <div className="errorDiv">{errorMessage}</div>
         <div className="input-remember">
